@@ -1,0 +1,62 @@
+Installing node.js
+use intaller provided by nodejs.org by selecting the OS you are working from 
+create an empty project folder
+  open cmd and navigate to project folder 
+  type npm init to initialize nodejs on the project folder
+
+from Node perspective, express is just another package that you need to install 
+using NPM and then require in your code.
+
+Package.json is used to manage dependencies. It lists all the dependencies for a 
+specific Javascript package. It should contain everything NPM needs to fetch and run
+your application.
+
+Use `npm init` to create a package.json file
+Use `npm install express` to install express. This also automatically adds the dependencies section
+in the package.json file
+import the express module using require('express')
+
+if a dependency is only used during development, you should instead save it as a 
+"development dependcy" in the package.json file.
+
+SideNote: Linters are tools that perform static analysis on software in order to recognise and report
+adherence/non-adherence to some set of coding best practice
+Use `npm install eslint --save-dev` to install linter. It will be entered to the devDependencies section 
+of package.json
+
+Named script can be defined in the package,json file and npm call is used to execute them with the cmd `npm run-script {script_name}`.
+this appraoch is commonly used to automate running tests.
+
+
+INSTALLING THE EXPRESS APPLICATION GENERATOR
+the EAG tool generates an express applicaiton skeleton. 
+Use `npm install express-generator -g` the -g flag installs it globally. So you can call it anywhere
+
+To create an express app with the EAG tool. navigate to where you want your app and 
+Use `express {name_of_app}`
+
+SideNote: I couldnt run the script above because I turned off running scripts in windows. To enable this is 
+I opened up powershell as admin and ran the cmd `set-executionpolicy remotesigned`.
+
+after creating the new express app, ensure to install your dependencies.
+navigate into the new app folder and run `npm install`
+
+# Run helloworld on Windows with PowerShell
+SET DEBUG=helloworld:* | npm start
+
+use the web to access your new express app @ http://127.0.0.1:3000/
+
+you can also start the express application by using `npm start`
+
+INSTALLING NODEMON
+used to restart the server on file changes.
+tips: install locally on developer dependcy, so the entire team has access to it in the project
+use `npm install --save-dev nodemon`
+
+if you choose to install it as a developer dependcy, you will not be able to run it from the cmd line.
+We can fix this, by calling it as a script created in the scripts section of package.json.
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart":"nodemon ./bin/www",
+    "serverstart":"DEBUG=local-library:* npm run devstart"
+  }
