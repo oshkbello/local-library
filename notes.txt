@@ -60,3 +60,8 @@ We can fix this, by calling it as a script created in the scripts section of pac
     "devstart":"nodemon ./bin/www",
     "serverstart":"DEBUG=local-library:* npm run devstart"
   }
+restart your server using this cmd
+  SET DEBUG=local-library:* npm run devstart {use this for windows powershell}
+or `npm run devstart`
+
+NOTE: to run scripts added to the package.json file use `npm run <scriptname>`
