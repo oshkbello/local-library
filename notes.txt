@@ -65,3 +65,74 @@ restart your server using this cmd
 or `npm run devstart`
 
 NOTE: to run scripts added to the package.json file use `npm run <scriptname>`
+
+USING DATABASE (mongoose)
+express can use any database supported by node.
+when choosing a db consider:
+  time-to-productivity
+  learning-curve
+  performance
+  ease of replication/backup
+  cost
+  community support
+
+Best way to interact with a db:
+  using database native query (SQL)
+  using object data model (ODM) or Object relational Model (ORM): an ODM/ORM represents the website's data
+  as JS objects, which ar then mapped to the underlying database. 
+best performance is achieved by using SQL or any other native query.
+benefits of ORM is developers can work indepent of database. Can also perform data validation.
+Using ORM results in lower costs for developement and maintenance. 
+
+There are several ORM solutions to select from on the NPM package manager site. 
+when selecting a solution, consider both the features provided and the community activity 
+Mongoose is the ORM solution used in the project and it uses MongoDB
+
+Mongose acts as a front end to MongoDB, an open source NoSQL db that uses document-oriented data model.
+a collection of documents in a MongoDB database is samthing as a table of rows in a relational db.
+
+Tips:
+before coding your models, take time to think about the type of data used in your app and their relation.
+
+Mongose Primer
+installing mongoose and MongoDB
+  `npm install mongoose`
+  installing mongoose adds all its dependencies including the MongoDB database driver. but does not install mongoDB itself.
+
+Defining and creating models:
+models are defined using the schema interface.
+schema allows to define the fields stored in each document along with their validation requirements and default values.
+you can define static and instance helper methods, and virtual properties(virtual properties arent stored in database).
+schema are compiled into models using the mongose.model() method.
+each model maps to a collection of documents in the mongoDB. the documents will contain the field/schema types defined 
+in the model schema.
+
+defining schemas
+  Require mongoose
+  `let mongoose = require('mongoose')`
+
+  deine a schema using schema constructor
+  `let Schema = mongoose.Schema`
+
+  declare fields and datatypes in your new schema
+  `let SomeModelSchema = new Schema({
+    a_string: String,
+    a_Date: Date
+  })`
+
+creating a model:
+  Define schema as done above
+
+  compile model from schema
+  `let SomeModel = mongoose.model('SomeModel', SomeModelSchema)`
+first argument of the mongoose.model() is the singular name of the collection that will be created for your model.
+  mongoose will create the database collection for the new model
+second argument is the schema you want to use in creating the model.
+
+Schema Types:
+schemas can have arbitrary number of fields.
+Each field represents a field in the documents stored in MongoDB.
+some schemaTypes are:
+  ObjectId: represents specific instances of a model in the db.
+  Mixed: an arbitrary schema type
+  []: an array of items. Javascript array operations can be performed on these types.
