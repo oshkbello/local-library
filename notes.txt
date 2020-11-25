@@ -136,3 +136,50 @@ some schemaTypes are:
   ObjectId: represents specific instances of a model in the db.
   Mixed: an arbitrary schema type
   []: an array of items. Javascript array operations can be performed on these types.
+
+Validation:
+Mongoose provides built-in and custom validators, and synchronous and asynchronous validators.
+it allows you to specify both the acceptable range of values and the error msg for validation failure.
+Built-in validators include:
+  required validator. used to specify whether the field must be supplied or not
+  Numbers. have mind and max validators
+  string:
+    enum: specifies the set of allowed values for the field
+    match: specifies a regular expression that the string must match
+    maxlength and minlength for the string
+
+Virtual properties:
+these are document properties that u can get and set but do not get save to mongoDB.
+the getters are useful for formatting or combining fields
+the setters are useful for de-composing a single value into multiple values for stroage.
+
+Methods and query helpers:
+Schema can have instance methods, static methods, and query helpers.
+an instance method is associated with a particular record and has access to the current object.
+Query helpers allows for extending mongoose chainable query builder API.
+
+Using models:
+the model represents a collection of documents in the db that u can search,
+while the model's instances represent individual documents that u can save and retrieve.
+
+Creating and modifying documents:
+to create a record you cand efine an instance of the model and then call save()
+  `let awesome_instance = new SomeModel({ name: 'aweomse' })`
+
+  `awesome_instance.save(function (err) {
+    if (err) return handleError(err)
+  })`
+creation and modification of records are asynchronous operations--you supply a callback that is called when
+the operation completes. 
+The API uses the error-first argument convention. if the API returns some result, this will be the second argument.
+
+you can also use create() to define the model instance at thesame time as you save it.
+  `SomeModel.create({ name: 'also_awesome' }, function (err, awesome_instance) {
+    if (err) return handleError(err)
+  })`
+You can access fields in new record using the dot notation, and also change the values.
+  `awesome_instance.name="New cool name"`
+  `awesome_instance.save(function (err) {
+    if (err) return handleError(err)
+  })`
+
