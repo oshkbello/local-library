@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let GenreSchema = new Schema({
-  name: { type: String, required: true, maxlength:100, minlength:3 }
+  name: { type: String, required: true }
 });
 
 //virtual for genre url
-
 GenreSchema.virtual('url').get(function () {
-  return '/catalog/bookinstance/' + this._id;
+  return '/catalog/genre/' + this._id;
 });
 
 //export module
-module.exports = mongoose.model('GenreSchema', GenreSchema);
+module.exports = mongoose.model('Genre', GenreSchema);

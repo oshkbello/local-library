@@ -1,6 +1,6 @@
-const mongoos = require('mongoose');
+const mongoose = require('mongoose');
 
-const Schema = mongoos.Schema;
+const Schema = mongoose.Schema;
 
 let BookSchema = new Schema({
   title: { type: String, required: true },
@@ -12,8 +12,8 @@ let BookSchema = new Schema({
 
 //virtual for book's url
 BookSchema.virtual('url').get(function () {
-  return '/catalog/book' + this._id;
+  return '/catalog/book/' + this._id;
 });
 
 //export model
-module.exports = mongoos.model('Book', BookSchema);
+module.exports = mongoose.model('Book', BookSchema);
