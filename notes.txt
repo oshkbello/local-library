@@ -183,3 +183,53 @@ You can access fields in new record using the dot notation, and also change the 
     if (err) return handleError(err)
   })`
 
+USING ROUTES
+route is a section of express code that associates an HTTP verb, a url path/pattern and a function that is called
+to handle that pattern. 
+
+use `express.Router` middleware to group the route handlers for a specifice part of a site together,
+and a access them using a common route-prefix. 
+
+defining separate route modules:
+  `const express = require('express)`
+
+  `const router = express.Router()`
+
+  sample page route:
+  router.get('/', function (req, res) {
+    res.send('Yohoo, sample route!')
+  })
+to use the router module in the main app, you need to require the newly create route file 
+  `const sampleRoute = require('FILE_LOCATION/file_name')`
+
+  `app.use('url_path_of_sampleRoute', sampleRoute)`
+the callback takes 3 args (req, res, next) that will contain http request object, response and next function in
+the middleware chain.
+
+NOTE:
+  because router functions are express middleware, they must either complete (respond to) the 
+  request or call the next function in the chain.
+  with router function you can specify as many callback args as needed or an array of callback functions.
+  each function is a part of the middleware chain and will be called in the order it is added
+
+Route paths:
+it defines the endpoints at which requests can be made. 
+route paths can also be string patterns. string patterns use a fprm of regular expression syntax to define patterns
+of endpoints that will be matched. 
+  ?: the endpoint must have 0 or 1 of the preceeding character
+  +: the endpoint must have 1 or more of the preceeding character
+  *: the endpoint mayb have an arbitrary string where the * character is placed.
+  (): grouping match on a set of characters to perform another operation on.
+
+Route parameters:
+these are named url segments used to capture values at specific positions in the url.
+named segments are prefixed with a colon and then the name.
+the captured values are stored in the `req.params` object using the parameter name as a keys (req.params.parameter_name)
+  example:
+  given a url http://localhost:3000/users/34/books/8989 we can extract the userId and bookId like so
+    app.get('/users/:userId/books/:bookId', function (req, res) {
+     ` //get userId via: req.params.userId
+      //get bookId via: req.params.bookId
+      res.send(re.params)
+    })`
+express allows you to construct URLs anyway you like. you can encode information in the body of the URL or use URL get params
