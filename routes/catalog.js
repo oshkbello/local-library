@@ -41,7 +41,7 @@ router.get('/author/:id/update', author_controller.author_update_get);
 router.post('/author/:id/update', author_controller.author_update_post);
 
 // GET request for one Author.
-router.get('/author/:id', author_controller.author_detail);
+router.get('/author/:id', author_controller.author_details);
 
 // GET request for list of all Authors.
 router.get('/authors', author_controller.author_list);
@@ -93,7 +93,7 @@ router.get('/bookinstance/:id/update', bookinstance_controller.bookinstance_upda
 router.post('/bookinstance/:id/update', bookinstance_controller.bookinstance_update_post);
 
 // GET request for one BookInstance.
-router.get('/bookinstance/:id', bookinstance_controller.bookinstance_detail);
+router.get('/bookinstance/:id', bookinstance_controller.bookinstance_details);
 
 // GET request for list of all BookInstance.
 router.get('/bookinstances', bookinstance_controller.bookinstance_list);
