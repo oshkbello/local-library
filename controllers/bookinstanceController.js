@@ -1,12 +1,12 @@
 const BookInstance = require('../models/bookinstance');
 
 exports.bookinstance_list = function(req, res) {
-  res.send('NOT IMPLEMENTED" BookIntance list');
-}
+  res.send('NOT IMPLEMENTED: BookIntance list');
+};
 
 exports.bookinstance_details = function(req, res) {
   res.send('NOT IMPLEMENTED: BookInstance details: ' + req.params.id);
-}
+};
 
 // Display BookInstance create form on GET.
 exports.bookinstance_create_get = function(req, res) {
